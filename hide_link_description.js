@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         ERPNext - Hide Extra Description in Multi Doctype
 // @namespace    http://tampermonkey.net/
-// @version      1.0.2
+// @version      1.0.3
 // @description  Hide extra data in item link suggestions
-// @author       Your Name
+// @author       Gopal Kedia (H.P. Automotive)
 // @match        https://erp.hpagroup.co.in/app/*
 // @match        https://erpnext.hpagroup.co.in/app/*
 // @grant        none

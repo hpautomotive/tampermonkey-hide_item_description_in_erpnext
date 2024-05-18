@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         ERPNext - Hide Extra Description in Multi Doctype
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Hide extra data in Sales Invoice item suggestions
+// @version      1.0.1
+// @description  Hide extra data in item link suggestions
 // @author       Your Name
 // @match        https://erp.hpagroup.co.in/app/*
 // @match        https://erpnext.hpagroup.co.in/app/*

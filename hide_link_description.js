@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ERPNext - Hide Extra Description in Multi Doctype
 // @namespace    http://tampermonkey.net/
-// @version      1.0.5
+// @version      1.1.0
 // @description  Hide extra data in item link suggestions
 // @author       Gopal Kedia (H.P. Automotive)
 // @match        https://erp.hpagroup.co.in/app/*
@@ -14,21 +14,36 @@
 (function() {
     'use strict';
 
-    // Function to hide the second part of the div and adjust the first part
+    // Function to hide the elements with the class 'small' and the specified 'text-muted' elements
     function hideExtraData() {
-        // Select all div elements with the class 'link-select-row'
-        var linkRows = document.querySelectorAll('.row.link-select-row');
+        // Select all elements whose ID starts with 'awesomplete_list_'
+        var listBoxes = document.querySelectorAll('[id^="awesomplete_list_"]');
 
+        listBoxes.forEach(function(listBox) {
+            // Select all span elements with the class 'small' within the matched elements
+            var smallElements = listBox.querySelectorAll('.small');
+            smallElements.forEach(function(element) {
+                element.style.display = 'none';
+            });
+        });
+
+        // Select all div elements with the class 'col-xs-8' containing a span with the class 'text-muted'
+        var colElements = document.querySelectorAll('.col-xs-8');
+        colElements.forEach(function(colElement) {
+            var textMutedSpan = colElement.querySelector('.text-muted');
+            if (textMutedSpan) {
+                colElement.style.display = 'none';
+            }
+        });
+
+        // Adjust divs within link-select-row in popups
+        var linkRows = document.querySelectorAll('.row.link-select-row');
         linkRows.forEach(function(linkRow) {
-            // Select the first and second child divs within the row
             var col1 = linkRow.children[0];
             var col2 = linkRow.children[1];
 
             if (col2) {
-                // Hide the second div
                 col2.style.display = 'none';
-
-                // Adjust the first div to use the full width
                 col1.classList.remove('col-xs-4');
                 col1.classList.add('col-xs-12');
             }
@@ -37,12 +52,10 @@
 
     // Function to observe for changes in the DOM and apply the hiding logic
     function observeDOMChanges() {
-        // Create a mutation observer to watch for changes in the DOM
         var observer = new MutationObserver(function(mutations) {
             hideExtraData();
         });
 
-        // Start observing the body for changes
         observer.observe(document.body, {
             childList: true,
             subtree: true

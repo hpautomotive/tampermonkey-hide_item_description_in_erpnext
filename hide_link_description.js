@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ERPNext - Hide Extra Description in Multi Doctype
 // @namespace    http://tampermonkey.net/
-// @version      1.2.0
+// @version      1.2.1
 // @description  Hide extra data in item link suggestions
 // @author       H.P. Automotive
 // @match        https://erpnext.hpagroup.co.in/app/*
@@ -13,45 +13,50 @@
 (function() {
     'use strict';
 
-    // Function to hide the elements with the class 'small' and the specified 'text-muted' elements
+    /**
+     * Hide elements with specific classes and adjust layout
+     */
     function hideExtraData() {
-        // Select all elements whose ID starts with 'awesomplete_list_'
-        var listBoxes = document.querySelectorAll('[id^="awesomplete_list_"]');
-
-        listBoxes.forEach(function(listBox) {
-            // Select all span elements with the class 'small' within the matched elements
-            var smallElements = listBox.querySelectorAll('.small');
-            smallElements.forEach(function(element) {
-                element.style.display = 'none';
+        try {
+            // Select all elements whose ID starts with 'awesomplete_list_'
+            const listBoxes = document.querySelectorAll('[id^="awesomplete_list_"]');
+            listBoxes.forEach(listBox => {
+                // Select and hide all span elements with the class 'small' within the matched elements
+                const smallElements = listBox.querySelectorAll('.small');
+                smallElements.forEach(element => {
+                    element.style.display = 'none';
+                });
             });
-        });
 
-        // Select all div elements with the class 'col-xs-8' containing a span with the class 'text-muted'
-        var colElements = document.querySelectorAll('.col-xs-8');
-        colElements.forEach(function(colElement) {
-            var textMutedSpan = colElement.querySelector('.text-muted');
-            if (textMutedSpan) {
-                colElement.style.display = 'none';
-            }
-        });
+            // Select and hide all div elements with the class 'col-xs-8' containing a span with the class 'text-muted'
+            const colElements = document.querySelectorAll('.col-xs-8');
+            colElements.forEach(colElement => {
+                const textMutedSpan = colElement.querySelector('.text-muted');
+                if (textMutedSpan) {
+                    colElement.style.display = 'none';
+                }
+            });
 
-        // Adjust divs within link-select-row in popups
-        var linkRows = document.querySelectorAll('.row.link-select-row');
-        linkRows.forEach(function(linkRow) {
-            var col1 = linkRow.children[0];
-            var col2 = linkRow.children[1];
-
-            if (col2) {
-                col2.style.display = 'none';
-                col1.classList.remove('col-xs-4');
-                col1.classList.add('col-xs-12');
-            }
-        });
+            // Adjust divs within link-select-row in popups
+            const linkRows = document.querySelectorAll('.row.link-select-row');
+            linkRows.forEach(linkRow => {
+                const col1 = linkRow.children[0];
+                const col2 = linkRow.children[1];
+                if (col2) {
+                    col2.style.display = 'none';
+                    col1.classList.replace('col-xs-4', 'col-xs-12');
+                }
+            });
+        } catch (error) {
+            console.error('Error in hideExtraData:', error);
+        }
     }
 
-    // Function to observe for changes in the DOM and apply the hiding logic
+    /**
+     * Observe for changes in the DOM and apply the hiding logic
+     */
     function observeDOMChanges() {
-        var observer = new MutationObserver(function(mutations) {
+        const observer = new MutationObserver(mutations => {
             hideExtraData();
         });
 
@@ -64,8 +69,6 @@
         hideExtraData();
     }
 
-    // Wait for the page to fully load
-    window.addEventListener('load', function() {
-        observeDOMChanges();
-    });
+    // Wait for the page to fully load before starting the observer
+    window.addEventListener('load', observeDOMChanges);
 })();

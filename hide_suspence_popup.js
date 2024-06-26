@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         ERPNext - Auto Close Specific Popups
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
+// @version      1.0.1
 // @description  Auto close popups with specific content on ERPNext after form refreshes or loadings
-// @match        https://erpnext.hpagroup.co.in/app/payment-entry/*
+// @match        https://erpnext.hpagroup.co.in/app/*
 // @grant        none
 // ==/UserScript==
 

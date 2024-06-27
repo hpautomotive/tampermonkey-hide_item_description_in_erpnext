@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         ERPNext - Auto Close Specific Popups
 // @namespace    http://tampermonkey.net/
-// @version      1.0.2
+// @version      1.0.3
 // @description  Auto close popups with specific content on ERPNext after form refreshes or loadings
+// @author       H.P. Automotive
 // @match        https://erpnext.hpagroup.co.in/app/*
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/hpautomotive/tampermonkey-hide_item_description_in_erpnext/main/hide_suspence_popup.js

@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         Auto Set Print Settings
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Automatically sets the print orientation to Portrait, checks the "With Letterhead" checkbox, and sets the correct Letter Head based on the company name. Additionally, handles column selection based on company name.
 // @author       You
 // @match        https://erpnext.hpagroup.co.in/app/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/hpautomotive/tampermonkey-hide_item_description_in_erpnext/main/Auto%20Set%20Print%20Settings.js
+// @downloadURL  https://raw.githubusercontent.com/hpautomotive/tampermonkey-hide_item_description_in_erpnext/main/Auto%20Set%20Print%20Settings.js
 // ==/UserScript==
 
 (function() {

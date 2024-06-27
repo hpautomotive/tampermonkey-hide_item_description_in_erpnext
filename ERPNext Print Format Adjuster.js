@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         ERPNext Print Format Adjuster
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adjust print format based on invoice number for Sales and Purchase Invoices
-// @author       Your Name
+// @author       H.P. AUTOMOTIVE
 // @match        https://erpnext.hpagroup.co.in/app/*
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/hpautomotive/tampermonkey-hide_item_description_in_erpnext/main/ERPNext%20Print%20Format%20Adjuster.js

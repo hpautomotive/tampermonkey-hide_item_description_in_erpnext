@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         ERPNext - Auto Close Specific Popups
 // @namespace    http://tampermonkey.net/
-// @version      1.1.0
+// @version      1.1.1
 // @description  Try to auto-close popups with specific content on ERPNext more reliably
 // @author       H.P. Automotive
-// @match        https://erpnext.hpagroup.co.in/app/payment-entry/*
+// @match        https://erpnext.hpagroup.co.in/app/*
 // @grant        none
 // ==/UserScript==
 

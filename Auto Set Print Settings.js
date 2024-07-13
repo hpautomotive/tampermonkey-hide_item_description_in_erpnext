@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Set Print Settings
 // @namespace    http://tampermonkey.net/
-// @version      1.0.3
+// @version      1.1.0
 // @description  Automatically sets the print orientation to Portrait, checks the "With Letterhead" checkbox, and sets the correct Letter Head based on the company name. Additionally, handles column selection based on company name.
 // @author       H.P. AUTOMOTIVE
 // @match        https://erpnext.hpagroup.co.in/app/*
@@ -51,21 +51,21 @@
             const pickColumnsCheckbox = modal.querySelector('input[data-fieldname="pick_columns"]');
             if (pickColumnsCheckbox && !pickColumnsCheckbox.checked) {
                 pickColumnsCheckbox.click();
+
+                setTimeout(() => {
+                    const selectAllButton = modal.querySelector('button.select-all');
+                    if (selectAllButton) {
+                        selectAllButton.click();
+
+                        setTimeout(() => {
+                            const companyColumnCheckbox = modal.querySelector('input[data-unit="company"]');
+                            if (companyColumnCheckbox && companyColumnCheckbox.checked) {
+                                companyColumnCheckbox.click();
+                            }
+                        }, 500); // Delay to ensure the checkboxes are rendered
+                    }
+                }, 500); // Delay to ensure the modal is fully rendered
             }
-
-            setTimeout(() => {
-                const selectAllButton = modal.querySelector('button.select-all');
-                if (selectAllButton) {
-                    selectAllButton.click();
-
-                    setTimeout(() => {
-                        const companyColumnCheckbox = modal.querySelector('input[data-unit="company"]');
-                        if (companyColumnCheckbox && companyColumnCheckbox.checked) {
-                            companyColumnCheckbox.click();
-                        }
-                    }, 500); // Delay to ensure the checkboxes are rendered
-                }
-            }, 500); // Delay to ensure the modal is fully rendered
         }
     }
 
@@ -89,4 +89,13 @@
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
+
+    // Revised reload functionality: target the correct submit button
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.matches('.standard-actions .btn-modal-primary')) {
+            setTimeout(function() {
+                window.location.reload();
+            }, 2500); // Reload the page after 2500 ms
+        }
+    });
 })();

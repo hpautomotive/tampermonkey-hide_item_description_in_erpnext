@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Set Print Settings
 // @namespace    http://tampermonkey.net/
-// @version      1.1.2
+// @version      1.1.3
 // @description  Automatically sets the print orientation to Portrait, checks the "With Letterhead" checkbox, and sets the correct Letter Head based on the company name. Additionally, handles column selection based on company name.
 // @author       H.P. AUTOMOTIVE
 // @match        https://erpnext.hpagroup.co.in/app/query-report/*
@@ -95,7 +95,7 @@
         if (e.target && e.target.matches('.standard-actions .btn-modal-primary')) {
             setTimeout(function() {
                 window.location.reload();
-            }, 8000);
+            }, 8000); //After few years, it will reload before the file is downloaded, just increase time or find a way to check if file is downloaded and then triger reload on 200ms delay or least remove reload function, take help of AI if required
         }
     });
 })();

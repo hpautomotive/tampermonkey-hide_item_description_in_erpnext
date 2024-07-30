@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         ERPNext - Hide Extra Description in Multi Doctype
 // @namespace    http://tampermonkey.net/
-// @version      1.2.4
+// @version      1.2.5
 // @description  Hide extra data in item link suggestions
 // @author       H.P. Automotive
 // @match        https://erpnext.hpagroup.co.in/app/*
+// @match        https://hpa-group.frappe.cloud/app/*
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/hpautomotive/tampermonkey-hide_item_description_in_erpnext/main/hide_link_description.js
 // @downloadURL  https://raw.githubusercontent.com/hpautomotive/tampermonkey-hide_item_description_in_erpnext/main/hide_link_description.js
